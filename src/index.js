@@ -39,7 +39,7 @@ class vimeo {
             }).then(res => {
                 
                 var vimeoVideoID = res.data.uri.split('/')[2];
-                console.log('Vimeo video ID: '+vimeoVideoID);
+                var uri = res.data.uri;
 
                 if(folder){
                     axios.put(`https://api.vimeo.com/me/projects/${folder}/videos/${vimeoVideoID}`,{}, {
@@ -49,14 +49,14 @@ class vimeo {
                         .then(response => {
 
                             console.log(response);
-                            resolve(response);
+                            resolve(uri);
 
                         }).catch(err => {
                             console.log(err);
                             reject(err);
                         });
                 }else{
-                    resolve(res);
+                    resolve(uri);
                 }
 
             }).catch(err => {
@@ -75,7 +75,7 @@ class vimeo {
 
             var video = params.video,
                 name = params.name,
-                description = params.description,
+                description = params.description,   
                 folder = params.folder;
 
             axios.post('https://api.vimeo.com/me/videos', {
@@ -92,7 +92,7 @@ class vimeo {
             }).then(res => {
                 
                 var vimeoVideoID = res.data.uri.split('/')[2];
-                console.log('Vimeo video ID: '+vimeoVideoID);
+                var uri = res.data.uri;
 
                 UploadVideoTusJs(res.data.upload.upload_link, video)
                 .then(res => {
@@ -105,14 +105,14 @@ class vimeo {
                             .then(response => {
     
                                 console.log(response);
-                                resolve(response);
+                                resolve(uri);
     
                             }).catch(err => {
                                 console.log(err);
                                 reject(err);
                             });
                     }else{
-                        resolve(res);
+                        resolve(uri);
                     }
 
                 }).catch(err => {
