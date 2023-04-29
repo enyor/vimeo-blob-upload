@@ -1,6 +1,6 @@
 {
   "name": "vimeo-blob-upload",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Vimeo nodejs client to upload videos from blob",
   "main": "src/index.js",
   "dependencies": {
